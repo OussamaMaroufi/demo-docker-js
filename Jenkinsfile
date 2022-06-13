@@ -16,6 +16,12 @@ pipeline{
     }
     
     stage("test"){
+      //This stage will execute only in such branches 
+      when {
+        expression {
+          BRANCH_NAME == 'main'
+        }
+      }
     
         steps{
            echo 'testing step ....'
