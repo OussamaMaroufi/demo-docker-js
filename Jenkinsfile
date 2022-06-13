@@ -10,6 +10,7 @@ pipeline{
     
         steps{
           echo 'building step ....'
+          echo 'Build the Application'
         }
       
     }
