@@ -1,4 +1,6 @@
 pipeline{
+
+  //That is mean it is gonna run on any jenkins agnt  
   agent any
   
   
@@ -29,3 +31,5 @@ pipeline{
     }
   }
 }
+
+//Configure Branch Sources Will Add implicitly A stage whiche Checkout  of code 
