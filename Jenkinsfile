@@ -39,14 +39,14 @@ pipeline {
           echo 'deploy step ....'
           // echo "deploying with ${SERVER_CREDENTIALS}"
           //Other way to use credentia l
-          withCredentials(
-            [usernamePassword(
-              credentials:'server-credential',
-               usernameVariable:USER,
-                passwordVariable:PWD)]
-            ) {
-            sh 'ddddd'
-          }
+          // withCredentials(
+          //   [usernamePassword(
+          //     credentials:'server-credential',
+          //      usernameVariable:USER,
+          //       passwordVariable:PWD)]
+          //   ) {
+          //     echo "Script ${USER} ${PWD}"
+          // }
         }
     }
   }
