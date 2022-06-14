@@ -1,16 +1,20 @@
 /* groovylint-disable-next-line CompileStatic */
+//use it in every stage
+def gv
+
 pipeline {
   //That is mean it is gonna run on any jenkins agnt
   agent any
 
   parameters {
-    choice(name:'VERSION',choices:['1.1.0','1.3.0'],description:'')
-    booleanParam(name:'executeTests',defaultValue:true,description:'')
+    //Here we can rebuild any version --- build with parameter
+    choice(name:'VERSION', choices:['1.1.0', '1.3.0'], description:'')
+    booleanParam(name:'executeTests', defaultValue:true, description:'')
   }
 
   // tools {
   //   //build Tool Available in jenkins maven gradle jdk
-  //   maven 'Maven'//Name of installation 
+  //   maven 'Maven'//Name of installation
 
   // }
 
@@ -23,11 +27,21 @@ pipeline {
   }
 
   stages {
+    //Her to load grrovy script
+    stage('init') {
+        steps {
+            script {
+              gv = load 'script.groovy'
+            }
+        }
+    }
     stage('build') {
         steps {
-          echo 'building step ....'
-          echo 'Build the Application'
-          echo "building version ${NEW_VERSION}"
+          // echo 'building step ....'
+          // echo "building version ${NEW_VERSION}"
+          script {
+            gv.buildApp()
+          }
         }
     }
 
@@ -42,24 +56,30 @@ pipeline {
       }
 
         steps {
-        echo 'testing step ....'
+          script {
+            gv.testApp()
+          }
         }
     }
 
     stage('deploy') {
         steps {
-          echo 'deploy step ....'
-          echo "deploying version ..${params.VERSION}"
-          // echo "deploying with ${SERVER_CREDENTIALS}"
-          //Other way to use credentia l
-          // withCredentials(
-          //   [usernamePassword(
-          //     credentials:'server-credential',
-          //      usernameVariable:USER,
-          //       passwordVariable:PWD)]
-          //   ) {
-          //     echo "Script ${USER} ${PWD}"
-          // }
+          // echo 'deploy step ....'
+          // echo "deploying version ..${params.VERSION}"
+        // echo "deploying with ${SERVER_CREDENTIALS}"
+        //Other way to use credentia l
+        // withCredentials(
+        //   [usernamePassword(
+        //     credentials:'server-credential',
+        //      usernameVariable:USER,
+        //       passwordVariable:PWD)]
+        //   ) {
+        //     echo "Script ${USER} ${PWD}"
+        // }
+
+        script  {
+          gv.deployApp()
+        }
         }
     }
   }
