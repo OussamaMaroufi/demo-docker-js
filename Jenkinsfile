@@ -6,9 +6,9 @@ pipeline {
   environment {
     // defined our v env  that will be available in any stage
     NEW_VERSION = '1.3.0' // calculated or extracted from code
-    //Get server Credential to use them in deploy
-    // SERVER_CREDENTIALS = credential('server-credential')
-    //add credential plugin
+  //Get server Credential to use them in deploy
+  // SERVER_CREDENTIALS = credential('server-credential')
+  //add credential plugin
   }
 
   stages {
@@ -38,6 +38,15 @@ pipeline {
         steps {
           echo 'deploy step ....'
           // echo "deploying with ${SERVER_CREDENTIALS}"
+          //Other way to use credentia l
+          withCredentials(
+            [usernamePassword(
+              credentials:'server-credential',
+               usernameVariable:USER,
+                passwordVariable:PWD)]
+            ) {
+            sh 'ddddd'
+          }
         }
     }
   }
