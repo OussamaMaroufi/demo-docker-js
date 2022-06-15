@@ -25,7 +25,7 @@ pipeline {
     // SERVER_CREDENTIALS = credential('server-credential')
     //add credential plugin
     dockerImage = ''
-    imagename = '.'
+    imagename = 'nodeapp2'
   }
 
   stages {
