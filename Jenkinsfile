@@ -42,9 +42,9 @@ pipeline {
           // echo 'building step ....'
           // echo "building version ${NEW_VERSION}"
           script {
-
-          dockerImage = docker.build .
             // gv.buildApp()
+
+          dockerImage = docker.build imagename
           }
         }
     }
