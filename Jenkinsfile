@@ -10,7 +10,6 @@ pipeline {
     //Here we can rebuild any version --- build with parameter
     choice(name:'VERSION', choices:['1.1.0', '1.3.0'], description:'')
     booleanParam(name:'executeTests', defaultValue:true, description:'')
-    imagename = '.'
   }
 
   // tools {
@@ -22,9 +21,10 @@ pipeline {
   environment {
     // defined our v env  that will be available in any stage
     NEW_VERSION = '1.3.0' // calculated or extracted from code
-  //Get server Credential to use them in deploy
-  // SERVER_CREDENTIALS = credential('server-credential')
-  //add credential plugin
+    //Get server Credential to use them in deploy
+    // SERVER_CREDENTIALS = credential('server-credential')
+    //add credential plugin
+    imagename = '.'
   }
 
   stages {
