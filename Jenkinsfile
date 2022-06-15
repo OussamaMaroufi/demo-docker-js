@@ -42,10 +42,10 @@ pipeline {
           // echo 'building step ....'
           // echo "building version ${NEW_VERSION}"
           script {
-            gv.buildApp()
-          }
 
-          dockerImage = docker.build imagename
+          dockerImage = docker.build .
+            // gv.buildApp()
+          }
         }
     }
 
