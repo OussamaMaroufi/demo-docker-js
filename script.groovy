@@ -9,7 +9,7 @@ def testApp() {
 def deployApp() {
     echo 'deploying the application ...'
     echo "deploying version ..${params.VERSION}"
-    docker ps
+    echo docker --version
 }
 
 return this
