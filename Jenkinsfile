@@ -10,6 +10,7 @@ pipeline {
     //Here we can rebuild any version --- build with parameter
     choice(name:'VERSION', choices:['1.1.0', '1.3.0'], description:'')
     booleanParam(name:'executeTests', defaultValue:true, description:'')
+    imagename = '.'
   }
 
   // tools {
