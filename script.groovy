@@ -9,7 +9,7 @@ def testApp() {
 def deployApp() {
     echo 'deploying the application ...'
     echo "deploying version ..${params.VERSION}"
-    dockerImage = docker.build ${imagename}
+    // dockerImage = docker.build ${imagename}
 }
 
 return this

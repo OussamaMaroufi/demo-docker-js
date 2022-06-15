@@ -24,6 +24,7 @@ pipeline {
     //Get server Credential to use them in deploy
     // SERVER_CREDENTIALS = credential('server-credential')
     //add credential plugin
+    dockerImage = ''
     imagename = '.'
   }
 
@@ -43,6 +44,8 @@ pipeline {
           script {
             gv.buildApp()
           }
+
+          dockerImage = docker.build imagename
         }
     }
 
